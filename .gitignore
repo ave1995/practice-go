@@ -1,2 +1,3 @@
-
-
+/grpc-server/.env
+/grpc-server/.data/
+.idea/
