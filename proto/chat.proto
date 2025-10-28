@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package chat;
+
+option go_package = "github.com/ave1995/practise-go/proto";
+
+message SendMessageRequest {
+  Message message = 1;
+}
+
+message SendMessageResponse {
+  string id = 1;
+  string message = 2;
+}
+
+message GetMessageRequest {
+  string id = 1;
+}
+
+message GetMessageResponse {
+  Message message = 1;
+}
+
+message Message {
+  string text = 1;
+}
+
+message ReaderRequest {}
+
+
+// ChatService provides APIs for sending, retrieving, and streaming chat messages.
+service ChatService {
+  // Sends a single message and returns a confirmation response.
+  rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
+
+  // Retrieves a specific message by its unique ID.
+  rpc GetMessage (GetMessageRequest) returns (GetMessageResponse);
+
+  // Opens a server-side streaming connection that continuously
+  // delivers new messages to the client in real time.
+  rpc Reader (ReaderRequest) returns (stream Message);
+}
