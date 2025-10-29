@@ -1,4 +1,4 @@
-module github.com/ave1995/practise-go/grpc-server
+module github.com/ave1995/practice-go/grpc-server
 
 go 1.25.3
 
