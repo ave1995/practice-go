@@ -97,6 +97,7 @@ func (f *Factory) MemoryCache() *memory.Cache {
 
 func (f *Factory) RedisCache() *redis.Cache {
 	f.redisCacheOnce.Do(func() {
+		// TODO: config
 		f.redisCache = redis.NewCache("localhost:6379", "", 0)
 	})
 	return f.redisCache

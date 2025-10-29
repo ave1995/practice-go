@@ -6,11 +6,8 @@ import (
 	"log/slog"
 	"sync"
 
-	"github.com/ave1995/practise-go/grpc-server/domain/connector"
 	"github.com/ave1995/practise-go/grpc-server/domain/model"
 )
-
-var _ connector.Broadcaster = (*Hub)(nil)
 
 type Hub struct {
 	logger       *slog.Logger
