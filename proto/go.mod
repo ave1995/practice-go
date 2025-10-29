@@ -1,4 +1,4 @@
-module github.com/ave1995/practise-go/proto
+module github.com/ave1995/practice-go/proto
 
 go 1.25.3
 
