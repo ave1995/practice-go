@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package chat;
 
-option go_package = "github.com/ave1995/practise-go/proto";
+option go_package = "github.com/ave1995/practice-go/proto";
 
 message SendMessageRequest {
   Message message = 1;

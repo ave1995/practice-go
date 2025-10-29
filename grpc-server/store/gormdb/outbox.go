@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/ave1995/practise-go/grpc-server/domain/model"
+	"github.com/ave1995/practice-go/grpc-server/domain/model"
 	"github.com/google/uuid"
 )
 

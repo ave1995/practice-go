@@ -7,15 +7,15 @@ import (
 	"os/signal"
 	"syscall"
 
-	lgprc "github.com/ave1995/practise-go/grpc-server/api/grpc"
-	"github.com/ave1995/practise-go/grpc-server/service/message"
-	"github.com/ave1995/practise-go/grpc-server/store/gormdb"
-	"github.com/ave1995/practise-go/proto"
+	lgprc "github.com/ave1995/practice-go/grpc-server/api/grpc"
+	"github.com/ave1995/practice-go/grpc-server/service/message"
+	"github.com/ave1995/practice-go/grpc-server/store/gormdb"
+	"github.com/ave1995/practice-go/proto"
 	"google.golang.org/grpc"
 
-	"github.com/ave1995/practise-go/grpc-server/config"
-	"github.com/ave1995/practise-go/grpc-server/factory"
-	"github.com/ave1995/practise-go/grpc-server/utils"
+	"github.com/ave1995/practice-go/grpc-server/config"
+	"github.com/ave1995/practice-go/grpc-server/factory"
+	"github.com/ave1995/practice-go/grpc-server/utils"
 )
 
 func main() {

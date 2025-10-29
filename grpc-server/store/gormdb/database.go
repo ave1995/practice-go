@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/ave1995/practise-go/grpc-server/config"
+	"github.com/ave1995/practice-go/grpc-server/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

@@ -2,9 +2,9 @@ module github.com/ave1995/practice-go/grpc-server
 
 go 1.25.3
 
-require github.com/ave1995/practise-go/proto v0.0.0
+require github.com/ave1995/practice-go/proto v0.0.0
 
-replace github.com/ave1995/practise-go/proto => ../proto
+replace github.com/ave1995/practice-go/proto => ../proto
 
 require (
 	github.com/google/uuid v1.6.0

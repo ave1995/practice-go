@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/ave1995/practise-go/grpc-server/config"
-	"github.com/ave1995/practise-go/grpc-server/domain/connector"
+	"github.com/ave1995/practice-go/grpc-server/config"
+	"github.com/ave1995/practice-go/grpc-server/domain/connector"
 	"github.com/segmentio/kafka-go"
 )
 

@@ -3,7 +3,7 @@ package model
 import (
 	"time"
 
-	"github.com/ave1995/practise-go/proto"
+	"github.com/ave1995/practice-go/proto"
 )
 
 type Message struct {

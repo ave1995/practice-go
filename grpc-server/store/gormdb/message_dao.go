@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/ave1995/practise-go/grpc-server/domain/model"
-	"github.com/ave1995/practise-go/grpc-server/domain/store"
+	"github.com/ave1995/practice-go/grpc-server/domain/model"
+	"github.com/ave1995/practice-go/grpc-server/domain/store"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

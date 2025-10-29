@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/ave1995/practise-go/grpc-server/domain/store"
+	"github.com/ave1995/practice-go/grpc-server/domain/store"
 	"github.com/redis/go-redis/v9"
 )
 

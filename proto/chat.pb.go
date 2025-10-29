@@ -307,7 +307,7 @@ const file_chat_proto_rawDesc = "" +
 	"\vSendMessage\x12\x18.chat.SendMessageRequest\x1a\x19.chat.SendMessageResponse\x12?\n" +
 	"\n" +
 	"GetMessage\x12\x17.chat.GetMessageRequest\x1a\x18.chat.GetMessageResponse\x12.\n" +
-	"\x06Reader\x12\x13.chat.ReaderRequest\x1a\r.chat.Message0\x01B&Z$github.com/ave1995/practise-go/protob\x06proto3"
+	"\x06Reader\x12\x13.chat.ReaderRequest\x1a\r.chat.Message0\x01B&Z$github.com/ave1995/practice-go/protob\x06proto3"
 
 var (
 	file_chat_proto_rawDescOnce sync.Once
