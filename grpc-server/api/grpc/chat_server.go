@@ -6,8 +6,8 @@ import (
 
 	"github.com/ave1995/practice-go/grpc-server/domain/model"
 	"github.com/ave1995/practice-go/grpc-server/domain/service"
-	"github.com/ave1995/practice-go/grpc-server/utils"
 	"github.com/ave1995/practice-go/proto"
+	"github.com/ave1995/practice-go/utils"
 	"github.com/google/uuid"
 )
 

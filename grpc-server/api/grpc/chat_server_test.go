@@ -8,8 +8,8 @@ package grpc_test
 //	"testing"
 //	"time"
 //
-//	"github.com/ave1995/practice-go/grpc-server/api/grpc"
-//	pb "github.com/ave1995/practice-go/grpc-server/api/grpc/proto"
+//	"github.com/ave1995/practice-go/grpc-server/connector/grpc"
+//	pb "github.com/ave1995/practice-go/grpc-server/connector/grpc/proto"
 //	"github.com/ave1995/practice-go/grpc-server/domain/model"
 //	"google.golang.org/grpc/metadata"
 //)

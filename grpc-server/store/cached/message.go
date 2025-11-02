@@ -8,7 +8,7 @@ import (
 
 	"github.com/ave1995/practice-go/grpc-server/domain/model"
 	"github.com/ave1995/practice-go/grpc-server/domain/store"
-	"github.com/ave1995/practice-go/grpc-server/utils"
+	"github.com/ave1995/practice-go/utils"
 )
 
 var _ store.MessageStore = (*MessageStore)(nil)

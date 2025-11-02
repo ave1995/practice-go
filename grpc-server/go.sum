@@ -1,5 +1,7 @@
 github.com/ave1995/practice-go/proto v0.2.0 h1:kCkCzlbd5+4uF+D3noVySM51CKXXGCrOW0bNzxBYhaE=
 github.com/ave1995/practice-go/proto v0.2.0/go.mod h1:HNlyE/iqgU5viFkJ/Jf63Ha/qZw3PP9CTpKz5ZccU10=
+github.com/ave1995/practice-go/utils v0.1.0 h1:7+khRP0Bs4m+fpKth6g0xpJ7mVjAicT9P0M1PgU5oSw=
+github.com/ave1995/practice-go/utils v0.1.0/go.mod h1:1+eO1wJI+LDP7nqsp5hiPOugFGjYejZ8h3nATCngpPc=
 github.com/bsm/ginkgo/v2 v2.12.0 h1:Ny8MWAHyOepLGlLKYmXG4IEkioBysk6GpaRTLC8zwWs=
 github.com/bsm/ginkgo/v2 v2.12.0/go.mod h1:SwYbGRRDovPVboqFv0tPTcG1sN61LM1Z4ARdbAV9g4c=
 github.com/bsm/gomega v1.27.10 h1:yeMWxP2pV2fG3FgAODIY8EiRE3dy0aeFYt4l7wh6yKA=

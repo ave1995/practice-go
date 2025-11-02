@@ -11,11 +11,11 @@ import (
 	"github.com/ave1995/practice-go/grpc-server/service/message"
 	"github.com/ave1995/practice-go/grpc-server/store/gormdb"
 	"github.com/ave1995/practice-go/proto"
+	"github.com/ave1995/practice-go/utils"
 	"google.golang.org/grpc"
 
 	"github.com/ave1995/practice-go/grpc-server/config"
 	"github.com/ave1995/practice-go/grpc-server/factory"
-	"github.com/ave1995/practice-go/grpc-server/utils"
 )
 
 func main() {

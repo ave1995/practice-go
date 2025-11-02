@@ -16,7 +16,7 @@ import (
 	"github.com/ave1995/practice-go/grpc-server/store/gormdb"
 	"github.com/ave1995/practice-go/grpc-server/store/memory"
 	"github.com/ave1995/practice-go/grpc-server/store/redis"
-	"github.com/ave1995/practice-go/grpc-server/utils"
+	"github.com/ave1995/practice-go/utils"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
@@ -65,7 +65,7 @@ func NewFactory(context context.Context, config config.Config) *Factory {
 
 func (f *Factory) Logger() *slog.Logger {
 	f.loggerOnce.Do(func() {
-		f.logger = newLogger()
+		f.logger = utils.NewInfoLogger()
 	})
 
 	return f.logger
