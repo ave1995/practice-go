@@ -1,4 +1,4 @@
-package factory
+package utils
 
 import (
 	"log/slog"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func newLogger() *slog.Logger {
+func NewInfoLogger() *slog.Logger {
 	handler := slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		AddSource: true,
 		Level:     slog.LevelInfo,
@@ -20,4 +20,8 @@ func newLogger() *slog.Logger {
 		},
 	})
 	return slog.New(handler)
+}
+
+func SlogError(err error) slog.Attr {
+	return slog.Any("error", err)
 }
