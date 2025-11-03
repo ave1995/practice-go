@@ -30,8 +30,7 @@ func NewChatConnector(config config.ChatClientConfig) (*Connector, error) {
 }
 
 func (c Connector) SendMessage(ctx context.Context, in *proto.SendMessageRequest, opts ...grpc.CallOption) (*proto.SendMessageResponse, error) {
-	//TODO implement me
-	panic("implement me")
+	return c.chatClient.SendMessage(ctx, in, opts...)
 }
 
 func (c Connector) GetMessage(

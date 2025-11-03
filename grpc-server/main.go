@@ -66,6 +66,5 @@ func main() {
 	fact.Close()
 
 	cancel()
-
 	logger.Info("Server stopped cleanly.")
 }
