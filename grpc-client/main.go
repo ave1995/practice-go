@@ -30,9 +30,6 @@ func main() {
 		panic(err)
 	}
 
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-
 	logger := utils.NewInfoLogger()
 
 	chatConnector, err := chat.NewChatConnector(cfg.ChatConnectorConfig())
@@ -66,7 +63,7 @@ func main() {
 	}
 
 	go func() {
-		logger.Info(fmt.Sprintf("connect to http://localhost:%s/ for GraphQL playground", defaultPort))
+		logger.Info(fmt.Sprintf("connect to http://localhost:%s/ for GraphQL playground", DefaultPort))
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			logger.Error("http.ListenAndServe", utils.SlogError(err))
 			os.Exit(1)
@@ -85,6 +82,5 @@ func main() {
 		logger.Error("server.Shutdown", utils.SlogError(err))
 	}
 
-	cancel()
 	logger.Info("Server stopped cleanly.")
 }
