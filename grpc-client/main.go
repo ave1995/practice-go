@@ -22,6 +22,7 @@ import (
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
+// TODO: config
 const DefaultPort = "8080"
 
 func main() {

@@ -20,6 +20,9 @@ type Config struct {
 	HubCapacity                      int           `envconfig:"MESSAGE_HUB_CAPACITY"`
 	OutboxInterval                   time.Duration `envconfig:"OUTBOX_INTERVAL" default:"1s"`
 	OutboxBatchSize                  int           `envconfig:"OUTBOX_BATCH_SIZE" default:"100"`
+	RedisHost                        string        `envconfig:"REDIS_HOST"`
+	RedisPort                        string        `envconfig:"REDIS_PORT"`
+	ServicePort                      string        `envconfig:"SERVICE_PORT"`
 }
 
 const EnvPrefix = ""

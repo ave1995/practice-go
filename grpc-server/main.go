@@ -13,6 +13,7 @@ import (
 	"github.com/ave1995/practice-go/proto"
 	"github.com/ave1995/practice-go/utils"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 
 	"github.com/ave1995/practice-go/grpc-server/config"
 	"github.com/ave1995/practice-go/grpc-server/factory"
@@ -30,7 +31,7 @@ func main() {
 	fact := factory.NewFactory(ctx, cfg)
 	logger := fact.Logger()
 
-	lis, err := net.Listen("tcp", ":50051")
+	lis, err := net.Listen("tcp", ":"+cfg.ServicePort)
 	if err != nil {
 		logger.Error("net.listen", utils.SlogError(err))
 		os.Exit(1)
@@ -42,13 +43,15 @@ func main() {
 	grpcServer := grpc.NewServer()
 	proto.RegisterChatServiceServer(grpcServer, lgprc.NewChatServer(logger, fact.MessageService()))
 
+	reflection.Register(grpcServer)
+
 	outboxStore := gormdb.NewOutboxStore(fact.Database())
 
 	processor := message.NewProcessor(logger, cfg.MessageProcessorConfig(), outboxStore, fact.KafkaProducer())
 	processor.Start(ctx)
 
 	go func() {
-		logger.Info("gRPC server listening on :50051")
+		logger.Info("gRPC server listening on", "port", cfg.ServicePort)
 		if err := grpcServer.Serve(lis); err != nil {
 			logger.Error("grpcServer.serve", utils.SlogError(err))
 			os.Exit(1)

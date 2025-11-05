@@ -2,6 +2,7 @@ package factory
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 	"os"
 	"sync"
@@ -98,7 +99,7 @@ func (f *Factory) MemoryCache() *memory.Cache {
 func (f *Factory) RedisCache() *redis.Cache {
 	f.redisCacheOnce.Do(func() {
 		// TODO: config
-		f.redisCache = redis.NewCache("localhost:6379", "", 0)
+		f.redisCache = redis.NewCache(fmt.Sprintf("%s:%s", f.config.RedisHost, f.config.RedisPort), "", 0)
 	})
 	return f.redisCache
 }
