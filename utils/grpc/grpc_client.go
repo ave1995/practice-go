@@ -114,7 +114,13 @@ func retryInterceptor(maxRetries int) grpc.UnaryClientInterceptor {
 	return func(ctx context.Context, method string, req, reply interface{},
 		cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 
-		var lastErr error
+		lastErr := invoker(ctx, method, req, reply, cc, opts...)
+
+		// Check if successful, not retryable, or if no retries are configured (maxRetries=0).
+		if lastErr == nil || !isRetryable(lastErr) || maxRetries == 0 {
+			return lastErr
+		}
+
 		backoff := 100 * time.Millisecond
 
 		for attempt := 0; attempt < maxRetries; attempt++ {
