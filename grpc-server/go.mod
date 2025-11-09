@@ -12,7 +12,7 @@ require (
 	gorm.io/gorm v1.31.0
 )
 
-require github.com/ave1995/practice-go/utils v0.1.0
+require github.com/ave1995/practice-go/utils v0.4.0
 
 require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect

@@ -22,12 +22,11 @@ func NewChatConnector(config config.ChatClientConfig) (*Connector, error) {
 		return nil, fmt.Errorf("create grpc connector: %w", err)
 	}
 
-	//
-	//fmt.Printf("Attempting to connect to: %s\n", config.GRPCConfig.Address)
-	//
-	//if err := ugrpc.EnsureConnected(grpcConn, config.GRPCConfig.Timeout); err != nil {
-	//	return nil, fmt.Errorf("gRPC server connectivity check failed: %w", err)
-	//}
+	fmt.Printf("Attempting to connect to: %s\n", config.GRPCConfig.Address)
+
+	if err := ugrpc.EnsureConnected(grpcConn, config.GRPCConfig.Timeout); err != nil {
+		return nil, fmt.Errorf("gRPC server connectivity check failed: %w", err)
+	}
 
 	chatClient := proto.NewChatServiceClient(grpcConn)
 

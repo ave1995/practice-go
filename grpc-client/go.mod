@@ -5,7 +5,7 @@ go 1.25.3
 require (
 	github.com/99designs/gqlgen v0.17.81
 	github.com/ave1995/practice-go/proto v0.2.0
-	github.com/ave1995/practice-go/utils v0.2.0
+	github.com/ave1995/practice-go/utils v0.4.0
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/vektah/gqlparser/v2 v2.5.30
 	google.golang.org/grpc v1.76.0
