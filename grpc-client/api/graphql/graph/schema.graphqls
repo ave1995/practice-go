@@ -1,0 +1,15 @@
+type Message {
+    text: String!
+    # If your model.Message has an ID field, include it here
+    id: ID!
+}
+
+type Query {
+    messages: [Message!]!
+
+    message(id: ID!): Message
+}
+
+type Mutation {
+    sendMessage(text: String!): Message!
+}

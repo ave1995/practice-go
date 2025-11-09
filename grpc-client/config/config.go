@@ -9,14 +9,14 @@ import (
 )
 
 type Config struct {
-	ChatClientAddress        string        `envconfig:"CHAT_CLIENT_ADDRESS"`
-	ChatClientUseTLS         bool          `envconfig:"CHAT_CLIENT_USE_TLS"`
-	ChatClientCertFile       string        `envconfig:"CHAT_CLIENT_CERT_FILE"`
-	ChatClientTimeout        time.Duration `envconfig:"CHAT_CLIENT_TIMEOUT"`
-	ChatClientMaxRetries     int           `envconfig:"CHAT_CLIENT_MAX_RETRIES"`
-	ChatClientKeepAlive      bool          `envconfig:"CHAT_CLIENT_KEEPALIVE"`
-	ChatClientEnableRetry    bool          `envconfig:"CHAT_CLIENT_ENABLE_RETRY"`
-	ChatClientMaxMessageSize int           `envconfig:"CHAT_CLIENT_MAX_MESSAGE_SIZE"`
+	ChatServerAddress        string        `envconfig:"CHAT_SERVER_ADDRESS"`
+	ChatServerUseTLS         bool          `envconfig:"CHAT_SERVER_USE_TLS"`
+	ChatServerCertFile       string        `envconfig:"CHAT_SERVER_CERT_FILE"`
+	ChatServerTimeout        time.Duration `envconfig:"CHAT_SERVER_TIMEOUT"`
+	ChatServerMaxRetries     int           `envconfig:"CHAT_SERVER_MAX_RETRIES"`
+	ChatServerKeepAlive      bool          `envconfig:"CHAT_SERVER_KEEPALIVE"`
+	ChatServerEnableRetry    bool          `envconfig:"CHAT_SERVER_ENABLE_RETRY"`
+	ChatServerMaxMessageSize int           `envconfig:"CHAT_SERVER_MAX_MESSAGE_SIZE"`
 }
 
 const EnvPrefix = ""
@@ -34,14 +34,14 @@ func NewConfig() (Config, error) {
 func (c Config) ChatConnectorConfig() ChatClientConfig {
 	return ChatClientConfig{
 		grpc.Config{
-			Address:        c.ChatClientAddress,
-			UseTLS:         c.ChatClientUseTLS,
-			CertFile:       c.ChatClientCertFile,
-			Timeout:        c.ChatClientTimeout,
-			MaxRetries:     c.ChatClientMaxRetries,
-			KeepAlive:      c.ChatClientKeepAlive,
-			EnableRetry:    c.ChatClientEnableRetry,
-			MaxMessageSize: c.ChatClientMaxMessageSize,
+			Address:        c.ChatServerAddress,
+			UseTLS:         c.ChatServerUseTLS,
+			CertFile:       c.ChatServerCertFile,
+			Timeout:        c.ChatServerTimeout,
+			MaxRetries:     c.ChatServerMaxRetries,
+			KeepAlive:      c.ChatServerKeepAlive,
+			EnableRetry:    c.ChatServerEnableRetry,
+			MaxMessageSize: c.ChatServerMaxMessageSize,
 		},
 	}
 }

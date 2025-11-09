@@ -23,7 +23,7 @@ import (
 )
 
 // TODO: config
-const DefaultPort = "8080"
+const DefaultPort = "8081"
 
 func main() {
 	cfg, err := config.NewConfig()
@@ -39,7 +39,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	chatResolver := graph.NewChatResolver(chatConnector)
+	chatResolver := graph.NewResolver(chatConnector)
 
 	mux := http.NewServeMux()
 	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: chatResolver}))

@@ -1,3 +1,6 @@
 /grpc-server/.env
+/grpc-server/.env.dev
+/grpc-client/.env
+/grpc-client/.env.dev
 .data/
 .idea/

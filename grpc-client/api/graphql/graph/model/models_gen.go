@@ -2,5 +2,13 @@
 
 package model
 
+type Message struct {
+	Text string `json:"text"`
+	ID   string `json:"id"`
+}
+
+type Mutation struct {
+}
+
 type Query struct {
 }
