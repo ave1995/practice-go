@@ -17,6 +17,7 @@ type Config struct {
 	ChatServerKeepAlive      bool          `envconfig:"CHAT_SERVER_KEEPALIVE"`
 	ChatServerEnableRetry    bool          `envconfig:"CHAT_SERVER_ENABLE_RETRY"`
 	ChatServerMaxMessageSize int           `envconfig:"CHAT_SERVER_MAX_MESSAGE_SIZE"`
+	ServicePort              string        `envconfig:"SERVICE_PORT"`
 }
 
 const EnvPrefix = ""

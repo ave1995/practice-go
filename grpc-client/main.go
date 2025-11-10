@@ -22,9 +22,6 @@ import (
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
-// TODO: config
-const DefaultPort = "8081"
-
 func main() {
 	cfg, err := config.NewConfig()
 	if err != nil {
@@ -59,12 +56,12 @@ func main() {
 	mux.Handle("/query", srv)
 
 	server := &http.Server{
-		Addr:    ":" + DefaultPort,
+		Addr:    ":" + cfg.ServicePort,
 		Handler: mux,
 	}
 
 	go func() {
-		logger.Info(fmt.Sprintf("connect to http://localhost:%s/ for GraphQL playground", DefaultPort))
+		logger.Info(fmt.Sprintf("connect to http://localhost:%s/ for GraphQL playground", cfg.ServicePort))
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			logger.Error("http.ListenAndServe", utils.SlogError(err))
 			os.Exit(1)
