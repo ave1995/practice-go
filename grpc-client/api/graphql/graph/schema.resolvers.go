@@ -7,38 +7,23 @@ package graph
 import (
 	"context"
 	"fmt"
-	"time"
 
 	"github.com/ave1995/practice-go/grpc-client/api/graphql/graph/model"
-	"github.com/ave1995/practice-go/proto"
 )
 
 // SendMessage is the resolver for the sendMessage field.
 func (r *mutationResolver) SendMessage(ctx context.Context, text string) (*model.Message, error) {
-	if text == "" {
-		return nil, fmt.Errorf("text cannot be empty")
-	}
-
-	req := &proto.SendMessageRequest{
-		Message: &proto.Message{
-			Text: text,
-		},
-	}
-
-	testCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-
-	msg, err := r.grpcConn.SendMessage(testCtx, req)
+	msg, err := r.messageService.Send(ctx, text)
 	if err != nil {
-		return nil, fmt.Errorf("send message via gRPC: %w", err)
+		return nil, fmt.Errorf("sending message failed: %w", err)
 	}
 
-	gm := &model.Message{
-		ID:   msg.Id,
-		Text: msg.Message,
+	graphMessage := &model.Message{
+		Text: msg.Text,
+		ID:   msg.ID,
 	}
 
-	return gm, nil
+	return graphMessage, nil
 }
 
 // Messages is the resolver for the messages field.

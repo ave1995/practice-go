@@ -4,22 +4,16 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 
-	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/99designs/gqlgen/graphql/handler/extension"
-	"github.com/99designs/gqlgen/graphql/handler/lru"
-	"github.com/99designs/gqlgen/graphql/handler/transport"
-	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/ave1995/practice-go/grpc-client/api/graphql"
 	"github.com/ave1995/practice-go/grpc-client/api/graphql/graph"
 	"github.com/ave1995/practice-go/grpc-client/config"
 	"github.com/ave1995/practice-go/grpc-client/connector/chat"
+	"github.com/ave1995/practice-go/grpc-client/service/message"
 	"github.com/ave1995/practice-go/utils"
-	"github.com/vektah/gqlparser/v2/ast"
 )
 
 func main() {
@@ -30,55 +24,26 @@ func main() {
 
 	logger := utils.NewInfoLogger()
 
+	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+	defer stop()
+
 	chatConnector, err := chat.NewChatConnector(cfg.ChatConnectorConfig())
 	if err != nil {
 		logger.Error("grpc.NewConnector", utils.SlogError(err))
 		os.Exit(1)
 	}
 
-	chatResolver := graph.NewResolver(chatConnector)
+	chatService := message.NewService(chatConnector)
 
-	mux := http.NewServeMux()
-	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: chatResolver}))
+	chatResolver := graph.NewResolver(chatService)
 
-	srv.AddTransport(transport.Options{})
-	srv.AddTransport(transport.GET{})
-	srv.AddTransport(transport.POST{})
+	graphql.RunGraphQLServer(ctx, cfg, logger, chatResolver)
 
-	srv.SetQueryCache(lru.New[*ast.QueryDocument](1000))
+	logger.Info("All services have stopped. Application exiting.")
 
-	srv.Use(extension.Introspection{})
-	srv.Use(extension.AutomaticPersistedQuery{
-		Cache: lru.New[string](100),
-	})
-
-	mux.Handle("/", playground.Handler("GraphQL playground", "/query"))
-	mux.Handle("/query", srv)
-
-	server := &http.Server{
-		Addr:    ":" + cfg.ServicePort,
-		Handler: mux,
+	if errors.Is(ctx.Err(), context.Canceled) {
+		fmt.Println("Graceful shutdown successful.")
+	} else {
+		fmt.Println("Application exited unexpectedly.")
 	}
-
-	go func() {
-		logger.Info(fmt.Sprintf("connect to http://localhost:%s/ for GraphQL playground", cfg.ServicePort))
-		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			logger.Error("http.ListenAndServe", utils.SlogError(err))
-			os.Exit(1)
-		}
-	}()
-
-	sigCh := make(chan os.Signal, 1)
-	signal.Notify(sigCh, syscall.SIGINT, syscall.SIGTERM)
-
-	sig := <-sigCh
-	logger.Info("Received signal. Shutting down gracefully...", "signal", sig)
-
-	shutdownCtx, shutdownCancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer shutdownCancel()
-	if err := server.Shutdown(shutdownCtx); err != nil {
-		logger.Error("server.Shutdown", utils.SlogError(err))
-	}
-
-	logger.Info("Server stopped cleanly.")
 }
